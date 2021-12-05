@@ -11,6 +11,13 @@ export const AgregarArticulo = () =>{
     const price = useRef()
     const img = useRef()
 
+    const handleAgregarArticulo = (name,price,img) =>{
+        agregarArticulo(name,price,img)
+        name.current.value = ""
+        price.current.value = ""
+        img.current.value = ""
+    }
+
     return(
         <Container>
             <Formulario>
@@ -25,7 +32,7 @@ export const AgregarArticulo = () =>{
                 <Imagen>
                     <Input ref={img} type="url" accept="image/png, .jpeg, .jpg, image/gif"/>
                 </Imagen>
-                <Boton onClick={() => agregarArticulo(name,price,img)}>
+                <Boton onClick={() => handleAgregarArticulo(name,price,img)}>
                     
                     Agregar
                 </Boton>
