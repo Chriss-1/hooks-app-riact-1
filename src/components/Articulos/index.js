@@ -5,6 +5,8 @@ import React, { useContext } from "react";
 import { AgregarArticulo } from '../AgregarArticulo'
 
 export const Articulos = () => {
+
+    // Obtenemos del contexto lo que necesitamos
     const articulosContext = useContext(ArticulosContext)
     const {data} = articulosContext
     

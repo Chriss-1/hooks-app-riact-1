@@ -4,13 +4,18 @@ import { ArticulosContext } from "../../contex/contex";
 import React, { useContext } from "react";
 
 export const AgregarArticulo = () =>{
+
+    // Obtenemos del contexto lo que necesitamos
     const articulosContext = useContext(ArticulosContext)
     const {agregarArticulo} = articulosContext
 
+    // Asignamos referencias para poder enviar los datos a agregarArticulo
     const name = useRef()
     const price = useRef()
     const img = useRef()
 
+    // Funcion que espera el evento click del boton para
+    // llamar a la funcion agregarArticulo
     const handleAgregarArticulo = (name,price,img) =>{
         agregarArticulo(name,price,img)
         name.current.value = ""
@@ -33,7 +38,6 @@ export const AgregarArticulo = () =>{
                     <Input ref={img} type="url" accept="image/png, .jpeg, .jpg, image/gif"/>
                 </Imagen>
                 <Boton onClick={() => handleAgregarArticulo(name,price,img)}>
-                    
                     Agregar
                 </Boton>
             </Formulario>

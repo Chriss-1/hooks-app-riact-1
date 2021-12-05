@@ -5,9 +5,13 @@ import {ArticulosContext} from '../../contex/contex'
 import React, { useContext } from "react";
 
 export const Carro = () => {
+
+    // Obtenemos del contexto lo que necesitamos
     const articulosContext = useContext(ArticulosContext)
     const {eliminarProducto,data,cantidad} = articulosContext
 
+    // Funcion que espera el evento click del boton para
+    // mostrar una alerta 
     const handleDelete = (id) => {
         swal({
             title:"Eliminar articulo",
@@ -20,6 +24,7 @@ export const Carro = () => {
         })
     }
 
+    // Calcular valores
     let subTotal = data.carrito.reduce((acum, prod) => (prod.cantidad * prod.precio) + acum, 0)
     let impto = subTotal * 0.15
     let totalPagar = subTotal + impto

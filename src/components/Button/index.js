@@ -4,6 +4,7 @@ import React, { useContext } from "react";
 
 export const Button = ({children, prod}) => {
 
+    // Obtenemos del contexto lo que necesitamos
     const articulosContext = useContext(ArticulosContext)
     const {agregarAlCarro} = articulosContext
 

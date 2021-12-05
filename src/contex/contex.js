@@ -17,12 +17,15 @@ const informacion = {
   };
 
 export const ArticulosContextProvider = (props) => {
+
+    // Obtener los valores iniciales para el contexto
     const [data, setData] = useState(informacion);
 
     useEffect(() =>{
         setData(informacion)
     },[])
 
+    // Función para agregar un producto al carrito 
     const agregarAlCarro = (producto) => {
         // 1- Verificar si el producto clickeado ya està en el carrito
         if (data.carrito.find(x => x.id === producto.id)) {
@@ -36,30 +39,36 @@ export const ArticulosContextProvider = (props) => {
         setData({...data})
       };
 
+    // Función para eliminar el producto del carrito
     const eliminarProducto = (id) => {
+        // filtramos la data para no agregar el producto que eliminanos
         const carritoCopia = data.carrito.filter(x => x.id !== id)
             data.carrito = carritoCopia
             setData({...data})
             return
     };
 
+    // Función para agregar un nuevo articulo para mostrar
     const agregarArticulo = (name,price,img) => {
+
+      // asignacion de variable
       const id = data.articulos.length + 1
       const nombre = name.current.value
       const precio = parseInt(price.current.value)
       const imagen = img.current.value
-      console.log(price,name)
+
+      // Agregamos a la data el nuevo articulo
       data.articulos.push({id,nombre,precio,imagen})
       console.log(data.articulos);
       setData({...data})
       return
     }
 
-
-    // let cantidad = data.carrito.length
+    // Obtener la cantidad de producto en el carrito para la burbuja
     let cantidad = data.carrito.reduce((acum, actual) => acum + actual.cantidad, 0);
 
 
+    // Objeto del contexto
     const articulosContext = {
         data,
         cantidad,
@@ -68,6 +77,7 @@ export const ArticulosContextProvider = (props) => {
         agregarArticulo
     };
 
+    // Pasar los valores al proveedor y retornarlo
     return(
         <ArticulosContext.Provider value={articulosContext}>
             {props.children}
