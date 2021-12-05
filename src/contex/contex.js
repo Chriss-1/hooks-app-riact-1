@@ -43,6 +43,18 @@ export const ArticulosContextProvider = (props) => {
             return
     };
 
+    const agregarArticulo = (name,price,img) => {
+      const id = data.articulos.length + 1
+      const nombre = name.current.value
+      const precio = parseInt(price.current.value)
+      const imagen = img.current.value
+      console.log(price,name)
+      data.articulos.push({id,nombre,precio,imagen})
+      console.log(data.articulos);
+      setData({...data})
+      return
+    }
+
 
     // let cantidad = data.carrito.length
     let cantidad = data.carrito.reduce((acum, actual) => acum + actual.cantidad, 0);
@@ -52,7 +64,8 @@ export const ArticulosContextProvider = (props) => {
         data,
         cantidad,
         agregarAlCarro,
-        eliminarProducto
+        eliminarProducto,
+        agregarArticulo
     };
 
     return(

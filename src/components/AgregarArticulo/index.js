@@ -1,21 +1,35 @@
 import { useRef } from "react";
+import { Span, Container, Formulario, Titulo, Datos, Imagen, Boton, Input } from './styles'
+import { ArticulosContext } from "../../contex/contex";
+import React, { useContext } from "react";
 
 export const AgregarArticulo = () =>{
-    const id = useRef()
-    const nombre = useRef()
-    const precio = useRef()
+    const articulosContext = useContext(ArticulosContext)
+    const {agregarArticulo} = articulosContext
+
+    const name = useRef()
+    const price = useRef()
     const img = useRef()
 
     return(
-        <div>
-            <div>
-                <input ref={nombre} type="text" placeholder="Nombre"/>
-                <input ref={precio} type="number" placeholder="Precio"/>
-                <input ref={img} type="file"/>
-            </div>
-            <button>
-                agregar
-            </button>
-        </div>
+        <Container>
+            <Formulario>
+                <Titulo>
+                    Agregar un nuevo articulo
+                </Titulo>
+                <Datos>
+                    <Input ref={name} type="text" placeholder="Nombre"/>
+                    <Input ref={price} type="number" placeholder="Precio"/>
+                </Datos>
+                <Span>Ingresar url de la imagen</Span>
+                <Imagen>
+                    <Input ref={img} type="url" accept="image/png, .jpeg, .jpg, image/gif"/>
+                </Imagen>
+                <Boton onClick={() => agregarArticulo(name,price,img)}>
+                    
+                    Agregar
+                </Boton>
+            </Formulario>
+        </Container>
     )
 }
